@@ -257,6 +257,8 @@ class Connection:
     def set_login(
         self, identity, url, login=None, password=None, entry_id=None, submit_url=None
     ):
+        if not (url.startswith('mailto:') or url.startswith('https:') or url.startswith('vnc:')):
+            raise Exception('Url needs to start with "mailto:" or "https: or vnc:"')
         action = 'set-login'
         message = create_message(action, id=identity.associated_name, url=url)
 
